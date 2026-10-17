@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Revanth Vanamoju | Product Implementation & Delivery Leader</title>
+<meta name="description" content="Product Implementation & Delivery Leader. Enterprise SaaS, program management and stakeholder management. Manager, Consulting at Deloitte; ex-Darwinbox.">
+<meta property="og:title" content="Revanth Vanamoju | Product Implementation & Delivery Leader">
+<meta property="og:description" content="Enterprise rollouts customers can rely on.">
+<meta property="og:image" content="photo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: a bento grid of tiles on a dark navy ground. Large type, one amber accent,
+   cursor spotlight on tiles, a command palette (Ctrl/Cmd+K) and an interactive delivery lifecycle. */
+:root{
+  --bg:#070d1a; --tile:#0d1730; --tile2:#142550;
+  --fg:#eef3fc; --muted:#98abcf; --line:rgba(150,180,235,.16);
+  --accent:#f5b942; --accent-ink:#1b1303; --blue:#8fc0ff;
+  --glow1:rgba(60,110,220,.30); --glow2:rgba(245,185,66,.10);
+  --display:'Geist','Segoe UI',system-ui,sans-serif;
+  --mono:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#f3f5fa; --tile:#ffffff; --tile2:#e9eef9;
+    --fg:#0c1730; --muted:#4a5a7c; --line:rgba(20,40,90,.14);
+    --accent:#9a5800; --accent-ink:#ffffff; --blue:#1f4fa3;
+    --glow1:rgba(60,110,220,.14); --glow2:rgba(245,185,66,.16); color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#f3f5fa; --tile:#ffffff; --tile2:#e9eef9;
+  --fg:#0c1730; --muted:#4a5a7c; --line:rgba(20,40,90,.14);
+  --accent:#9a5800; --accent-ink:#ffffff; --blue:#1f4fa3;
+  --glow1:rgba(60,110,220,.14); --glow2:rgba(245,185,66,.16); color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font:400 17px/1.6 var(--display);-webkit-font-smoothing:antialiased;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+.glow{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(900px 520px at 85% -5%,var(--glow1),transparent 65%),radial-gradient(700px 420px at 0% 105%,var(--glow2),transparent 60%)}
+.wrap{max-width:1160px;margin:0 auto;position:relative;z-index:1}
+a{color:var(--blue)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+h1,h2,h3{margin:0;text-wrap:balance}
+.mono{font-family:var(--mono)}
+.k{font:500 11px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+.k.acc{color:var(--accent)}
+
+/* top bar */
+.top{display:flex;justify-content:flex-end;align-items:center;gap:16px;padding:22px 0}
+.brand{display:flex;align-items:center;gap:12px;font:800 28px/1 var(--display);letter-spacing:-.035em}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--tile2)}
+.topr{display:flex;gap:8px;align-items:center}
+.pill-btn{white-space:nowrap;border:1px solid var(--line);background:var(--tile);border-radius:999px;padding:8px 14px;font-size:14px;color:var(--muted);display:inline-flex;gap:10px;align-items:center}
+.pill-btn:hover{color:var(--fg);border-color:var(--muted)}
+.kbd{font:500 11px var(--mono);border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--muted)}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
+.tile{position:relative;overflow:hidden;background:var(--tile);border:1px solid var(--line);border-radius:22px;padding:28px;min-width:0}
+.tile::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s;
+  background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),var(--glow1),transparent 70%)}
+.tile:hover::before{opacity:1}
+.tile>*{position:relative}
+.c8{grid-column:span 8}.c7{grid-column:span 7}.c5{grid-column:span 5}.c4{grid-column:span 4}.c3{grid-column:span 3}.c2{grid-column:span 2}.c12{grid-column:span 12}
+
+.hero{padding:40px}
+.hero .k{font-size:16px;letter-spacing:.16em;font-weight:500;margin-bottom:0}
+.hero h1{font-size:clamp(2.2rem,4.6vw,3.7rem);line-height:1;font-weight:800;letter-spacing:-.045em;margin-top:22px}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.lede{color:var(--muted);font-size:19px;max-width:34em;margin:24px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.chip{border:1px solid var(--line);border-radius:999px;padding:6px 15px;font-size:15px;font-weight:500;background:var(--tile2)}
+
+.photo{grid-row:span 2;padding:0;min-height:420px}
+.photo .ph{position:absolute;inset:0;display:grid;place-items:center;
+  background:linear-gradient(160deg,var(--tile2),var(--tile))}
+.photo .ph span{font:800 120px/1 var(--display);letter-spacing:-.06em;color:var(--blue);opacity:.9}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 8%}
+.photo .cap{position:absolute;left:16px;right:16px;bottom:16px;display:flex;flex-direction:column;align-items:flex-start;gap:4px;
+  background:rgba(7,13,26,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:14px 18px;color:#eef3fc}
+.photo .cap b{font:800 26px/1.1 var(--display);letter-spacing:-.03em}
+.photo .cap small{font:400 13px var(--mono);opacity:.85}
+
+.stat .num{font:800 68px/1 var(--display);letter-spacing:-.05em}
+.stat .lab{color:var(--muted);font-size:15px;margin-top:10px;line-height:1.35}
+.now h3{font-size:24px;letter-spacing:-.02em;line-height:1.15}
+.now p{color:var(--muted);margin:8px 0 0;font-size:16px}
+
+/* lifecycle */
+.sec-title{font-size:clamp(1.6rem,3vw,2.3rem);letter-spacing:-.03em;line-height:1.08;font-weight:700}
+.sec-sub{color:var(--muted);margin:10px 0 0;max-width:36em}
+.steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:26px}
+.step{background:transparent;border:0;border-top:3px solid var(--line);text-align:left;padding:12px 2px 6px;transition:border-color .25s}
+.step .n{font:500 12px var(--mono);color:var(--muted);display:block}
+.step .t{font-weight:700;font-size:16px;display:block;margin-top:3px;color:var(--muted);transition:color .25s}
+.step.done,.step.on{border-top-color:var(--accent)}
+.step.on .t,.step:hover .t{color:var(--fg)}
+.step.on .n{color:var(--accent)}
+.phase{margin-top:22px;background:var(--tile2);border-radius:16px;padding:28px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px}
+.phase h3{font-size:clamp(1.3rem,2.4vw,1.75rem);line-height:1.15;letter-spacing:-.025em}
+.phase ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.phase li{padding-left:22px;position:relative}
+.phase li::before,.job li::before{content:"";position:absolute;left:0;top:.72em;width:10px;height:2px;background:var(--accent)}
+.gets{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+
+/* skills + platforms */
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{border:1px solid var(--line);border-radius:8px;padding:5px 12px;font-size:15px;background:var(--tile2)}
+.plat h3{font-size:20px;letter-spacing:-.015em;margin:0 0 12px}
+.plat .tags{margin-bottom:22px}
+.cert{display:inline-flex;align-items:center;gap:8px;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.cert::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+
+/* experience */
+.exp{margin-top:84px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 30px;align-items:center}
+.filters .lab{font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+.f{border:1px solid var(--line);background:var(--tile);border-radius:999px;padding:7px 15px;font-size:15px;color:var(--muted)}
+.f[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.job{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.3fr);gap:40px;padding:30px 0;border-top:1px solid var(--line)}
+.job h3{font-size:21px;letter-spacing:-.015em;line-height:1.2}
+.job .co{color:var(--muted);margin-top:4px}
+.job .dt{font:400 13px var(--mono);color:var(--muted);margin-top:10px}
+.job ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.job li{padding-left:22px;position:relative;transition:opacity .25s}
+.job li.dim{opacity:.28}
+.job li.hit::before{width:14px;height:3px}
+
+/* foot tiles */
+.foot{margin-top:84px}
+.foot p{margin:0 0 12px}
+.foot small{color:var(--muted);display:block;font-size:15px}
+.big-mail{font:500 clamp(1rem,2vw,1.25rem) var(--mono);word-break:break-all}
+.mail-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+footer{padding:36px 0 60px;color:var(--muted);font-size:14px}
+
+/* command palette */
+#pal{position:fixed;inset:0;z-index:50;background:rgba(3,8,20,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:grid;place-items:start center;padding:12vh 16px 0}
+.pal-box{width:100%;max-width:520px;background:var(--tile);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.pal-box input{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);padding:16px 18px;font:500 17px var(--display);color:var(--fg);outline:0}
+.pal-box ul{list-style:none;margin:0;padding:8px;max-height:50vh;overflow:auto}
+.pal-box li{padding:11px 12px;border-radius:10px;display:flex;justify-content:space-between;gap:12px;cursor:pointer}
+.pal-box li[aria-selected="true"]{background:var(--tile2)}
+.pal-box li span{color:var(--muted);font:400 12px var(--mono)}
+
+@media (max-width:900px){
+  .c8,.c7,.c5,.c4,.c3,.c12{grid-column:span 12}
+  .c2{grid-column:span 6}
+  .photo{grid-row:auto;min-height:380px;order:-1}
+  .hero{padding:28px}
+  .steps{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .phase{grid-template-columns:minmax(0,1fr);padding:22px}
+  .job{grid-template-columns:minmax(0,1fr);gap:20px}
+  .exp,.foot{margin-top:60px}
+  .tile{padding:24px}
+  .kbd{display:none}
+  .photo{min-height:440px}
+  .hero .k{font-size:13px;letter-spacing:.12em}
+  .brand{font-size:22px}
+  .dot{width:10px;height:10px}
+  .photo .cap b{font-size:22px}
+  #kbtn{display:none}
+  .pill-btn{padding:7px 12px;font-size:13px}
+  .top{gap:10px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="glow" aria-hidden="true"></div>
+<div class="wrap" id="top">
+  <header class="top">
+    <div class="topr">
+      <button class="pill-btn" id="kbtn" type="button" aria-label="Open quick jump menu">Jump to <span class="kbd" id="kkey">Ctrl K</span></button>
+      <button class="pill-btn" id="theme" type="button" aria-label="Switch between light and dark theme">Theme</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="bento" id="bento">
+      <section class="tile hero c8" aria-label="Introduction">
+        <p class="k acc">Product Implementation &amp; Delivery Leader</p>
+        <h1>Enterprise rollouts <em>customers can rely on</em></h1>
+        <p class="lede">I lead enterprise software implementations from kickoff to sustained adoption across manufacturing, supply chain, IT and insurance. Currently Manager, Consulting at Deloitte; previously at Darwinbox, a leading SaaS HCM platform.</p>
+        <div class="chips"><span class="chip">Enterprise SaaS</span><span class="chip">Program Management</span><span class="chip">Stakeholder Management</span></div>
+      </section>
+
+      <figure class="tile photo c4" style="margin:0">
+        <div class="ph" aria-hidden="true"><span>RV</span></div>
+        <img id="photo" src="photo.jpg" alt="Portrait of Revanth Vanamoju" hidden>
+        <figcaption class="cap"><b>Revanth Vanamoju</b><small>Hyderabad, India</small></figcaption>
+      </figure>
+
+      <div class="tile now c5">
+        <p class="k">Now</p>
+        <h3>Manager, Consulting</h3>
+        <p>Deloitte &middot; Dec 2022 to present. Leading Darwinbox and Workday delivery.</p>
+      </div>
+      <div class="tile stat c3"><div class="num" id="years">16+</div><div class="lab">years in delivery</div></div>
+
+      <section class="tile c12" id="deliver" aria-labelledby="lc-h">
+        <p class="k acc">How I deliver</p>
+        <h2 class="sec-title" id="lc-h">One implementation, six phases</h2>
+        <p class="sec-sub">Select a phase to see what I own at each stage and what the customer gets out of it.</p>
+        <div class="steps" id="steps" role="tablist" aria-label="Implementation phases"></div>
+        <div class="phase" id="phase" role="tabpanel" aria-live="polite"></div>
+      </section>
+
+      <section class="tile c7" id="skills" aria-labelledby="sk-h">
+        <p class="k">Core skills</p>
+        <h2 class="sr" id="sk-h" style="position:absolute;left:-9999px">Core skills</h2>
+        <div class="tags">
+          <span>Customer Onboarding &amp; Implementation</span><span>Program &amp; Project Management</span><span>Client Advisory</span>
+          <span>Requirements Analysis &amp; Solution Design</span><span>Stakeholder Communication</span><span>Escalation, Risk &amp; Issue Management</span>
+          <span>Cross-Functional Team Leadership</span><span>Process Improvement</span><span>Budget &amp; Resource Management</span>
+          <span>UAT &amp; Go-Live Management</span><span>Team Mentoring</span><span>Customer Obsession</span>
+        </div>
+      </section>
+
+      <section class="tile plat c5" aria-label="Platforms and certifications">
+        <p class="k">Platforms</p>
+        <h3>Darwinbox</h3>
+        <div class="tags"><span>Core HR</span><span>Organization Management</span><span>Leave &amp; Time</span><span>Recruitment</span><span>Payroll</span><span>Performance</span><span>Travel</span></div>
+        <h3>Workday</h3>
+        <div class="tags"><span>Core HCM</span></div>
+        <span class="cert">Certified consultant on both</span>
+      </section>
+    </div>
+
+    <section class="exp" id="experience" aria-labelledby="ex-h">
+      <p class="k acc">Experience</p>
+      <h2 class="sec-title" id="ex-h">Where I've done it</h2>
+      <p class="sec-sub">Filter by strength to highlight the work that shows it.</p>
+      <div class="filters" id="filters" role="group" aria-label="Highlight experience by strength"></div>
+
+      <article class="job">
+        <div><h3>Manager, Consulting</h3><div class="co">Deloitte Touche Tohmatsu Limited &middot; Hyderabad</div><div class="dt">Dec 2022 &ndash; Present</div></div>
+        <ul>
+          <li data-t="d t">Lead a team delivering Application Managed Services (AMS) for Darwinbox and Workday clients, overseeing both ongoing production support and enhancement and change request workstreams, while also having led implementation and consulting engagements for other clients.</li>
+          <li data-t="d">Advise clients on HR technology solutions, owning end-to-end delivery across the full engagement lifecycle, including delivery governance, status reporting, risk management and adherence to agreed timelines and quality standards.</li>
+          <li data-t="d">Analyze customer business requirements and design solutions across multiple functional scenarios, facilitating client demos and translating requirements into scalable delivery plans.</li>
+          <li data-t="s">Serve as the primary point of contact for clients, managing escalations and stakeholder communication across support, enhancement and implementation delivery to maintain high client-health scores.</li>
+          <li data-t="p t">Plan and allocate team resources and budgets across support, enhancement and implementation workstreams, driving cost efficiency through process improvement initiatives.</li>
+          <li data-t="t">Lead and mentor cross-functional project teams, monitoring daily delivery activity to maximize performance and maintain team agility.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div><h3>Implementation Head</h3><div class="co">Lockstep India &middot; Hyderabad (Remote)</div><div class="dt">Apr 2022 &ndash; Nov 2022</div></div>
+        <ul>
+          <li data-t="p d">Owned implementation strategy for client engagements, identifying process inefficiencies and redesigning delivery workflows to improve throughput.</li>
+          <li data-t="d">Developed comprehensive, milestone-based project plans to guide teams to on-time, on-budget completion.</li>
+          <li data-t="s d">Tracked project progress against plan, proactively flagging risks and schedule variances to leadership.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div><h3>Implementation Manager</h3><div class="co">Darwinbox Digital Solutions Pvt Ltd &middot; Hyderabad</div><div class="dt">Dec 2018 &ndash; Apr 2022</div></div>
+        <ul>
+          <li data-t="d">Managed multiple concurrent enterprise implementations end to end with minimal supervision, owning scope, schedule and stakeholder communication for each.</li>
+          <li data-t="s">Presented project status and delivery updates to senior leadership on a regular cadence, proactively surfacing risks alongside proposed mitigations.</li>
+          <li data-t="d">Directed the implementation lifecycle in coordination with cross-functional delivery teams, aligning releases to organizational needs and regulatory requirements.</li>
+          <li data-t="s">Built and maintained strong stakeholder relationships across client and internal organizations to ensure successful, on-time project outcomes.</li>
+          <li data-t="t">Led a team of implementation professionals delivering complex, multi-module projects on time and within budget.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div><h3>Assistant Manager, IT</h3><div class="co">Coromandel International Ltd &middot; Hyderabad</div><div class="dt">Sep 2017 &ndash; Dec 2018</div></div>
+        <ul>
+          <li data-t="d">Analyzed business requirements and designed system solutions across functional areas, aligning delivery with business priorities.</li>
+          <li data-t="s">Coordinated with vendors and business leaders to evaluate change requests and define implementation solutions.</li>
+          <li data-t="p s">Enabled accurate project tracking by maintaining up-to-date schedules, status reports and budgets in project management software.</li>
+          <li data-t="s">Led weekly project review meetings with senior management, reporting progress, risks and resolution plans.</li>
+          <li data-t="d">Managed user acceptance testing cycles and ticket closure within agreed timelines.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div><h3>Associate Technical Lead</h3><div class="co">Planit Testing India Pvt Ltd &middot; Hyderabad</div><div class="dt">May 2011 &ndash; Aug 2017</div></div>
+        <ul>
+          <li data-t="d p s">Coromandel Applications: analyzed business requirements and designed solutions across functional scenarios; screened processes for risk and improvement opportunities; prepared project effort estimations and presented status updates to senior leadership.</li>
+          <li data-t="d p">PayGenie Payroll Suite: managed multiple concurrent implementation projects to strict deadlines without compromising scope or quality; served as subject-matter expert for clients through go-live and post-production support; delivered post-project reports highlighting outcomes and improvement areas.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div><h3>Executive, Software Development</h3><div class="co">Mafoi Randstad &middot; Hyderabad</div><div class="dt">Aug 2010 &ndash; Apr 2011</div></div>
+        <ul>
+          <li data-t="d">PayGenie Payroll Suite: managed concurrent client implementations, providing subject-matter guidance and post-implementation support while maintaining strict delivery deadlines and quality standards.</li>
+        </ul>
+      </article>
+    </section>
+
+    <div class="bento foot" id="edu">
+      <section class="tile c5" aria-label="Education">
+        <p class="k">Education</p>
+        <p><strong>Master of Technology, Software Engineering</strong><small>JNTUH, Hyderabad, India &middot; 2015</small></p>
+        <p style="margin:0"><strong>Bachelor of Technology, Computer Science &amp; Engineering</strong><small>JNTUH, Hyderabad, India &middot; 2009</small></p>
+      </section>
+      <section class="tile c3" aria-label="Languages">
+        <p class="k">Languages</p>
+        <p style="margin:0">English<br>Telugu<br>Hindi</p>
+      </section>
+      <section class="tile c4" id="contact" aria-label="Contact">
+        <p class="k acc">Contact</p>
+        <div class="big-mail" id="email">Revanth_v@hotmail.com</div>
+        <div class="mail-row" style="margin-top:14px"><button class="pill-btn" id="copy" type="button">Copy email</button></div>
+        <small style="margin-top:14px">Open to Product Implementation and Program Management roles in enterprise SaaS.</small>
+      </section>
+    </div>
+  </main>
+
+  <footer>Revanth Vanamoju &middot; Hyderabad, India</footer>
+</div>
+
+<div id="pal" hidden>
+  <div class="pal-box" role="dialog" aria-modal="true" aria-label="Quick jump">
+    <input id="pq" type="text" placeholder="Jump to a section or action" autocomplete="off" aria-label="Search sections and actions">
+    <ul id="pl" role="listbox"></ul>
+  </div>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- numbers that stay current ---- */
+  var START = new Date(2010, 7, 1); // Aug 2010
+  var yrs = Math.floor((Date.now() - START.getTime()) / (365.25*24*3600*1000));
+  document.getElementById('years').textContent = yrs + '+';
+
+  /* ---- photo: shows if photo.jpg exists, otherwise the RV monogram stays ---- */
+  var img = document.getElementById('photo');
+  img.addEventListener('load', function(){ img.hidden = false; });
+  img.addEventListener('error', function(){ img.remove(); });
+  if(img.complete && img.naturalWidth > 0) img.hidden = false;
+
+  /* ---- theme ---- */
+  var root = document.documentElement, tbtn = document.getElementById('theme');
+  function current(){ var d = root.getAttribute('data-theme'); if(d) return d;
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'; }
+  try{ var saved = localStorage.getItem('rv-theme'); if(saved) root.setAttribute('data-theme', saved); }catch(e){}
+  function label(){ tbtn.textContent = current()==='dark' ? 'Light mode' : 'Dark mode'; }
+  function toggleTheme(){ var n = current()==='dark' ? 'light' : 'dark'; root.setAttribute('data-theme', n);
+    try{ localStorage.setItem('rv-theme', n); }catch(e){} label(); }
+  label(); tbtn.addEventListener('click', toggleTheme);
+
+  /* ---- cursor spotlight on tiles ---- */
+  if(!reduce && window.matchMedia('(hover: hover)').matches){
+    document.getElementById('bento').addEventListener('pointermove', function(e){
+      var t = e.target.closest('.tile'); if(!t) return;
+      var r = t.getBoundingClientRect();
+      t.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      t.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  }
+
+  /* ---- lifecycle ---- */
+  var PHASES = [
+    {n:'Kickoff', h:'Align on scope before anything is built',
+     d:['Agree scope, schedule and success criteria with the customer','Map stakeholders and set a clear communication cadence','Build a milestone-based plan with resources and budget'],
+     g:'One plan everyone has signed up to, and no surprises later.'},
+    {n:'Design', h:'Turn business requirements into a solution',
+     d:['Analyze requirements across functional scenarios','Design the solution and walk the customer through it in demos','Translate requirements into a scalable delivery plan'],
+     g:'A solution that fits how their organization actually works.'},
+    {n:'Configure', h:'Build with cross-functional teams',
+     d:['Coordinate delivery teams across modules, from Core HR to Payroll','Align releases to customer needs and regulatory requirements','Track progress against the plan and flag variances early'],
+     g:'Steady progress they can see, with risks raised alongside mitigations.'},
+    {n:'Test', h:'Prove it works before it goes live',
+     d:['Run user acceptance testing cycles with the customer','Evaluate change requests with vendors and business leaders','Close tickets within agreed timelines'],
+     g:'Confidence that the system behaves the way the business expects.'},
+    {n:'Go-live', h:'Launch without drama',
+     d:['Own go-live readiness across scope, schedule and stakeholders','Act as the customer’s subject-matter expert through launch','Keep senior leadership updated on status and risks'],
+     g:'A launch their people can trust, on time and within budget.'},
+    {n:'Adopt & support', h:'Stay until it sticks',
+     d:['Lead production support and enhancement work after launch','Resolve escalations and keep client-health scores high','Deliver post-project reports on outcomes and improvements'],
+     g:'A partner who stays accountable after go-live.'}
+  ];
+  var stepsEl = document.getElementById('steps'), phaseEl = document.getElementById('phase'), active = 0;
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+  function renderSteps(){
+    stepsEl.innerHTML = PHASES.map(function(p,i){
+      var cls = 'step' + (i<active?' done':'') + (i===active?' on':'');
+      return '<button type="button" role="tab" id="tab'+i+'" class="'+cls+'" aria-selected="'+(i===active)+'" aria-controls="phase" data-i="'+i+'">'+
+        '<span class="n">0'+(i+1)+'</span><span class="t">'+esc(p.n)+'</span></button>';
+    }).join('');
+  }
+  function renderPhase(){
+    var p = PHASES[active];
+    phaseEl.setAttribute('aria-labelledby','tab'+active);
+    phaseEl.innerHTML = '<div><p class="k">Phase 0'+(active+1)+'</p><h3>'+esc(p.h)+'</h3>'+
+      '<div class="gets"><p class="k">What the customer gets</p>'+esc(p.g)+'</div></div>'+
+      '<div><p class="k">What I do</p><ul>'+p.d.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul></div>';
+  }
+  function select(i, focus){ active = i; renderSteps(); renderPhase();
+    if(focus){ var b = document.getElementById('tab'+i); if(b) b.focus(); } }
+  stepsEl.addEventListener('click', function(e){ var b = e.target.closest('button[data-i]'); if(b) select(+b.getAttribute('data-i')); });
+  stepsEl.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight'){ e.preventDefault(); select(Math.min(active+1, PHASES.length-1), true); }
+    if(e.key==='ArrowLeft'){ e.preventDefault(); select(Math.max(active-1, 0), true); }
+  });
+  select(0);
+
+  /* ---- experience filters ---- */
+  var FILTERS = [['all','All'],['d','Customer delivery'],['t','Team leadership'],['s','Stakeholders & escalations'],['p','Process & cost']];
+  var fEl = document.getElementById('filters'), lis = document.querySelectorAll('.job li'), cur = 'all';
+  fEl.innerHTML = '<span class="lab">Highlight</span>' + FILTERS.map(function(f){
+    return '<button type="button" class="f" data-f="'+f[0]+'" aria-pressed="'+(f[0]===cur)+'">'+esc(f[1])+'</button>'; }).join('');
+  fEl.addEventListener('click', function(e){
+    var b = e.target.closest('.f'); if(!b) return; cur = b.getAttribute('data-f');
+    fEl.querySelectorAll('.f').forEach(function(x){ x.setAttribute('aria-pressed', x.getAttribute('data-f')===cur); });
+    lis.forEach(function(li){
+      var hit = cur!=='all' && (li.getAttribute('data-t')||'').split(' ').indexOf(cur)>-1;
+      li.classList.toggle('hit', hit); li.classList.toggle('dim', cur!=='all' && !hit);
+    });
+  });
+
+  /* ---- copy email ---- */
+  var cb = document.getElementById('copy'), em = document.getElementById('email');
+  function copyEmail(){
+    function fallback(){ var r = document.createRange(); r.selectNodeContents(em); var s = getSelection(); s.removeAllRanges(); s.addRange(r); cb.textContent = 'Selected'; }
+    try{ navigator.clipboard.writeText(em.textContent).then(function(){ cb.textContent = 'Copied'; }, fallback); }catch(e){ fallback(); }
+    setTimeout(function(){ cb.textContent = 'Copy email'; }, 1800);
+  }
+  cb.addEventListener('click', copyEmail);
+
+  /* ---- command palette ---- */
+  var pal = document.getElementById('pal'), pq = document.getElementById('pq'), pl = document.getElementById('pl'), sel = 0, shown = [];
+  var ITEMS = [
+    ['How I deliver','Section','#deliver'],['Experience','Section','#experience'],['Skills and platforms','Section','#skills'],
+    ['Education','Section','#edu'],['Contact','Section','#contact'],['Copy email address','Action','copy'],['Switch theme','Action','theme']
+  ];
+  var isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+  document.getElementById('kkey').textContent = isMac ? '⌘ K' : 'Ctrl K';
+  function drawPal(){
+    var q = pq.value.trim().toLowerCase();
+    shown = ITEMS.filter(function(x){ return !q || x[0].toLowerCase().indexOf(q) > -1; });
+    if(sel >= shown.length) sel = 0;
+    pl.innerHTML = shown.length ? shown.map(function(x,i){
+      return '<li role="option" data-i="'+i+'" aria-selected="'+(i===sel)+'">'+esc(x[0])+'<span>'+x[1]+'</span></li>'; }).join('')
+      : '<li style="cursor:default">No match</li>';
+  }
+  function openPal(){ pal.hidden = false; pq.value = ''; sel = 0; drawPal(); pq.focus(); }
+  function closePal(){ pal.hidden = true; document.getElementById('kbtn').focus(); }
+  function run(x){
+    closePal();
+    if(x[2]==='copy') copyEmail();
+    else if(x[2]==='theme') toggleTheme();
+    else { var t = document.querySelector(x[2]); if(t) t.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'}); }
+  }
+  document.getElementById('kbtn').addEventListener('click', openPal);
+  pq.addEventListener('input', function(){ sel = 0; drawPal(); });
+  pl.addEventListener('click', function(e){ var li = e.target.closest('li[data-i]'); if(li) run(shown[+li.getAttribute('data-i')]); });
+  pal.addEventListener('click', function(e){ if(e.target === pal) closePal(); });
+  document.addEventListener('keydown', function(e){
+    if((e.metaKey || e.ctrlKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); pal.hidden ? openPal() : closePal(); return; }
+    if(pal.hidden) return;
+    if(e.key==='Escape'){ closePal(); }
+    else if(e.key==='ArrowDown'){ e.preventDefault(); sel = Math.min(sel+1, shown.length-1); drawPal(); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); sel = Math.max(sel-1, 0); drawPal(); }
+    else if(e.key==='Enter'){ e.preventDefault(); if(shown[sel]) run(shown[sel]); }
+  });
+})();
+</script>
+</body>
+</html>
