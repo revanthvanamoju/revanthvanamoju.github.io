@@ -191,7 +191,6 @@ footer{padding:36px 0 60px;color:var(--muted);font-size:14px}
 
       <figure class="tile photo c4" style="margin:0">
         <div class="ph" aria-hidden="true"><span>RV</span></div>
-        <img id="photo" src="photo.jpg" alt="Portrait of Revanth Vanamoju" hidden>
         <figcaption class="cap"><b>Revanth Vanamoju</b><small>Hyderabad, India</small></figcaption>
       </figure>
 
@@ -335,10 +334,11 @@ footer{padding:36px 0 60px;color:var(--muted);font-size:14px}
   document.getElementById('years').textContent = yrs + '+';
 
   /* ---- photo: shows if photo.jpg exists, otherwise the RV monogram stays ---- */
-  var img = document.getElementById('photo');
-  img.addEventListener('load', function(){ img.hidden = false; });
-  img.addEventListener('error', function(){ img.remove(); });
-  if(img.complete && img.naturalWidth > 0) img.hidden = false;
+  /* the photo is added by script, so link-preview crawlers (which do not run scripts) never see it */
+  var fig = document.querySelector('.photo'), img = new Image();
+  img.id = 'photo'; img.alt = 'Portrait of Revanth Vanamoju';
+  img.addEventListener('load', function(){ fig.insertBefore(img, fig.querySelector('figcaption')); });
+  img.src = 'photo.jpg';
 
   /* ---- theme ---- */
   var root = document.documentElement, tbtn = document.getElementById('theme');
