@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Revanth Vanamoju | Product Implementation & Delivery Leader</title>
 <meta name="description" content="Product Implementation & Delivery Leader. Enterprise SaaS, program management and stakeholder management. Manager, Consulting at Deloitte; ex-Darwinbox.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://revanthvanamoju.github.io/">
 <meta property="og:title" content="Revanth Vanamoju | Product Implementation & Delivery Leader">
 <meta property="og:description" content="Enterprise rollouts customers can rely on.">
-<meta property="og:image" content="photo.jpg">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap">
@@ -22,14 +24,6 @@
   --display:'Geist','Segoe UI',system-ui,sans-serif;
   --mono:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;
   color-scheme:dark;
-}
-@media (prefers-color-scheme: light){
-  :root:not([data-theme="dark"]){
-    --bg:#f3f5fa; --tile:#ffffff; --tile2:#e9eef9;
-    --fg:#0c1730; --muted:#4a5a7c; --line:rgba(20,40,90,.14);
-    --accent:#9a5800; --accent-ink:#ffffff; --blue:#1f4fa3;
-    --glow1:rgba(60,110,220,.14); --glow2:rgba(245,185,66,.16); color-scheme:light;
-  }
 }
 :root[data-theme="light"]{
   --bg:#f3f5fa; --tile:#ffffff; --tile2:#e9eef9;
@@ -349,7 +343,7 @@ footer{padding:36px 0 60px;color:var(--muted);font-size:14px}
   /* ---- theme ---- */
   var root = document.documentElement, tbtn = document.getElementById('theme');
   function current(){ var d = root.getAttribute('data-theme'); if(d) return d;
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'; }
+    return 'dark'; }
   try{ var saved = localStorage.getItem('rv-theme'); if(saved) root.setAttribute('data-theme', saved); }catch(e){}
   function label(){ tbtn.textContent = current()==='dark' ? 'Light mode' : 'Dark mode'; }
   function toggleTheme(){ var n = current()==='dark' ? 'light' : 'dark'; root.setAttribute('data-theme', n);
